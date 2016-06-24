@@ -30,5 +30,9 @@ public class UserServiceImpl implements IUserService {
 	public int insert(User user) {
 		return userDao.insert(user);
 	}
+	@Override
+	public User findByUserName(String userName) {
+		return userDao.selectByUserName(userName);
+	}
 
 }

@@ -2,6 +2,8 @@ package com.zuoshangs.ssmdemo.dao.user;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.zuoshangs.ssmdemo.pojo.user.User;
 public interface IUserDao {
     int deleteByPrimaryKey(Integer id);
@@ -17,5 +19,7 @@ public interface IUserDao {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+	User selectByUserName(@Param("userName") String userName);
     
 }

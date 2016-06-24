@@ -12,4 +12,6 @@ public interface IUserService {
 	public int update(User user);
 	
 	public int insert(User user);
+
+	public User findByUserName(String userName);
 }
