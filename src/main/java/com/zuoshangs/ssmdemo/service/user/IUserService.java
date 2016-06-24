@@ -8,4 +8,8 @@ public interface IUserService {
 	public User getUserById(int userId);
 
 	public List<User> selectAll();
+	
+	public int update(User user);
+	
+	public int insert(User user);
 }

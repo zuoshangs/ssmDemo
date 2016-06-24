@@ -22,5 +22,13 @@ public class UserServiceImpl implements IUserService {
 	public List<User> selectAll() {
 		return userDao.selectAll();
 	}
+	@Override
+	public int update(User user) {
+		return userDao.updateByPrimaryKeySelective(user);
+	}
+	@Override
+	public int insert(User user) {
+		return userDao.insert(user);
+	}
 
 }

@@ -6,9 +6,14 @@
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="head_image" property="headImage" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="VARCHAR" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="district" property="district" jdbcType="VARCHAR" />
   </resultMap>
+  
   <sql id="Base_Column_List" >
-    id, user_name, password, age
+    id, user_name, password, age, head_image, gender, memo, favorite, district
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -27,9 +32,10 @@
   </delete>
   <insert id="insert" parameterType="com.zuoshangs.ssmdemo.pojo.user.User" >
     insert into t_user (id, user_name, password, 
-      age)
+      age,head_image, gender, memo, favorite, district)
     values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{age,jdbcType=INTEGER})
+      #{age,jdbcType=INTEGER},#{headImage,jdbcType=VARCHAR},#{gender,jdbcType=VARCHAR},
+      #{memo,jdbcType=VARCHAR},#{favorite,jdbcType=VARCHAR},#{district,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zuoshangs.ssmdemo.pojo.user.User" >
     insert into t_user
@@ -40,11 +46,26 @@
       <if test="userName != null" >
         user_name,
       </if>
-      <if test="password != null" >
+      <if test="password != null and password != ''" >
         password,
       </if>
       <if test="age != null" >
         age,
+      </if>
+       <if test="head_image != null" >
+        head_image,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+      <if test="favorite != null" >
+        favorite,
+      </if>
+      <if test="district != null" >
+        district,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -60,6 +81,21 @@
       <if test="age != null" >
         #{age,jdbcType=INTEGER},
       </if>
+      <if test="headImage != null" >
+        #{headImage,jdbcType=INTEGER},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=INTEGER},
+      </if>
+      <if test="favorite != null" >
+        #{favorite,jdbcType=INTEGER},
+      </if>
+      <if test="district != null" >
+        #{district,jdbcType=INTEGER},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.zuoshangs.ssmdemo.pojo.user.User" >
@@ -68,20 +104,40 @@
       <if test="userName != null" >
         user_name = #{userName,jdbcType=VARCHAR},
       </if>
-      <if test="password != null" >
+      <if test="password != null and password != ''" >
         password = #{password,jdbcType=VARCHAR},
       </if>
       <if test="age != null" >
         age = #{age,jdbcType=INTEGER},
       </if>
+      <if test="headImage != null" >
+        head_image = #{headImage,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="favorite != null" >
+        favorite = #{favorite,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null" >
+        district = #{district,jdbcType=VARCHAR},
+      </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.zuoshangs.ssmdemo.pojo.user.User" >
     update t_user
     set user_name = #{userName,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       age = #{age,jdbcType=INTEGER}
+       head_image = #{headImage,jdbcType=VARCHAR},
+       gender = #{gender,jdbcType=VARCHAR},
+       memo = #{memo,jdbcType=VARCHAR},
+       favorite = #{favorite,jdbcType=VARCHAR},
+       district = #{district,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
